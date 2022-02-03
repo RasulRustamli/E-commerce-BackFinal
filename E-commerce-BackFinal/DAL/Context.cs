@@ -1,0 +1,20 @@
+﻿using E_commerce_BackFinal.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace E_commerce_BackFinal.DAL
+{
+    public class Context: DbContext
+    {
+        public Context(DbContextOptions<Context> options) : base(options)
+        {
+
+        }
+        public DbSet<CompanySlider> companySliders { get; set; }
+
+    }
+}

@@ -1,4 +1,5 @@
-﻿using E_commerce_BackFinal.Models;
+﻿using E_commerce_BackFinal.DAL;
+using E_commerce_BackFinal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,12 +12,14 @@ namespace E_commerce_BackFinal.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly Context _context;
+        
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(Context context)
         {
-            _logger = logger;
+            _context = context;
         }
+        
 
         public IActionResult Index()
         {
