@@ -25,12 +25,15 @@ namespace E_commerce_BackFinal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("companySliders");
+                    b.ToTable("CompanySliders");
                 });
 #pragma warning restore 612, 618
         }

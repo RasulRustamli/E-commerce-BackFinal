@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace E_commerce_BackFinal.DAL
 {
-    public class Context: DbContext
+    public class Context: IdentityDbContext<AppUser>
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
 
         }
-        public DbSet<CompanySlider> companySliders { get; set; }
+        public DbSet<CompanySlider> CompanySliders { get; set; }
 
     }
 }

@@ -23,6 +23,7 @@ namespace E_commerce_BackFinal.Controllers
 
         public IActionResult Index()
         {
+            List<CompanySlider> companySliders = _context.CompanySliders.ToList();
             return View();
         }
 

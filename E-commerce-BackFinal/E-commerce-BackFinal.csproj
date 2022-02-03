@@ -6,7 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
+    <Compile Remove="Migrations\20220203131421_addCompanySliderTable.cs" />
+    <Compile Remove="Migrations\20220203131421_addCompanySliderTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\images\company\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +27,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
 </Project>

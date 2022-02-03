@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_commerce_BackFinal.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220203131421_addCompanySliderTable")]
+    [Migration("20220203132548_addCompanySliderTable")]
     partial class addCompanySliderTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,12 +27,15 @@ namespace E_commerce_BackFinal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("companySliders");
+                    b.ToTable("CompanySliders");
                 });
 #pragma warning restore 612, 618
         }
