@@ -133,7 +133,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             CompanySlider dbSlider = await _context.CompanySliders.FindAsync(id);
             if (dbSlider == null) return NotFound();
 
-            string path = Path.Combine(_env.WebRootPath, "images/company", dbSlider.PhotoUrl);
+            string path = Path.Combine(_env.WebRootPath, "images/company/", dbSlider.PhotoUrl);
             if (System.IO.File.Exists(path))
             {
                 System.IO.File.Delete(path);

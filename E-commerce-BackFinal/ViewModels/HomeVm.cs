@@ -8,6 +8,7 @@ namespace E_commerce_BackFinal.ViewModels
 {
     public class HomeVm
     {
-        public IEnumerable<CompanySlider> companySliders { get; set; }
+        public List<CompanySlider> companySliders { get; set; }
+        public List<Service> services { get; set; }
     }
 }

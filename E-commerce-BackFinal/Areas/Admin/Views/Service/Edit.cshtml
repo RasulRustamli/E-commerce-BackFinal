@@ -1,0 +1,51 @@
+﻿@model Service
+@{ ViewData["Title"] = "Update"; }
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            Image  <img style="width:400px; height:400px" src="~/images/service-icon/@Model.IconUrl" />
+        </div>
+        <br /><br />
+        <div class="col">
+            <a asp-controller="CompanySlider" asp-action="Index" class="btn btn-warning">Go Back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Default form</h4>
+                    <p class="card-description">
+                        Update Image
+                    </p>
+                    <form class="forms-sample" method="Post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" class="form-control" placeholder="Name">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description" class="form-control" placeholder="Name"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Photo"></label>
+                            <input asp-for="Photo" class="form-control" accept="image/*" placeholder="Description" />
+                            <span asp-validation-for="Photo" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-light">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <partial name="_Validation">
+
+}
+

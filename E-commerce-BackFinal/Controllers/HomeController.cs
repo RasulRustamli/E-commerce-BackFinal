@@ -1,5 +1,6 @@
 ﻿using E_commerce_BackFinal.DAL;
 using E_commerce_BackFinal.Models;
+using E_commerce_BackFinal.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,7 +25,13 @@ namespace E_commerce_BackFinal.Controllers
         public IActionResult Index()
         {
             List<CompanySlider> companySliders = _context.CompanySliders.ToList();
-            return View(companySliders);
+            List<Service> services = _context.Services.ToList();
+            HomeVm homeVm = new HomeVm();
+            homeVm.companySliders = companySliders;
+            homeVm.services = services;
+            ViewData["CompanySliders"] = companySliders;
+            ViewData["Services"] = services;
+            return View();
         }
 
         public IActionResult Privacy()
