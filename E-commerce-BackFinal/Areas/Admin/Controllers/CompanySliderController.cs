@@ -30,12 +30,6 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             return View(companySliders);
         }
 
-        // GET: CompanySliderController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: CompanySliderController/Create
         public ActionResult Create()
         {
