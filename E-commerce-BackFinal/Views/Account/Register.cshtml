@@ -1,0 +1,70 @@
+﻿ @model RegisterVm
+ @using E_commerce_BackFinal.ViewModels
+    <!--====== Breadcrumb Part Start ======-->
+
+<div class="breadcrumb-area">
+    <div class="container-fluid custom-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Register</li>
+            </ol>
+        </nav>
+    </div> <!-- container -->
+</div>
+
+<!--====== Breadcrumb Part Ends ======-->
+<!--====== Register Part Start ======-->
+
+<section class="register-area pt-10">
+    <div class="container-fluid custom-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="login-register-wrapper mt-30">
+                    <h4 class="allup-title">Creat New Account</h4>
+                    <p class="mt-10">Already have an account? <a href="login.html">Log in instead!</a></p>
+                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                    <form  method="post">
+                        <div class="single-form">
+                            <input asp-for="FirstName" type="text" placeholder="First Name">
+                        </div>
+                        <div class="single-form">
+                            <input asp-for="LastName" type="text" placeholder="Last Name">
+                        </div>
+                        <div class="single-form">
+                            <input asp-for="Email" type="email" placeholder="Email Address">
+                            <span asp-validation-for="Email" class="text text-danger"></span>
+                        </div>
+                        <div class="single-form">
+                            <input asp-for="UserName" type="text" placeholder="Username">
+                            <span asp-validation-for="UserName" class="text text-danger"></span>
+                        </div>
+                        <div class="single-form">
+                            <input asp-for="Password" type="password" placeholder="Password">
+                            <span asp-validation-for="Password" class="text text-danger"></span>
+                        </div>
+                        <div class="single-form">
+                            <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password">
+                            <span asp-validation-for="ConfirmPassword" class="text text-danger"></span>
+                        </div>
+                        <div class="custom-checkbox mt-30">
+                            <input type="checkbox" id="account-1">
+                            <label for="account-1"></label>
+                            <p>Receive Offers From Our Partners</p>
+                        </div>
+                        <div class="custom-checkbox mt-30">
+                            <input asp-for="Subscribe" type="checkbox" id="account-2">
+                            <label for="account-2"></label>
+                            <p>Sign Up For Our Newsletter <br> Subscribe To Our Newsletters Now And Stay Up-To-Date With New Collections, The Latest Lookbooks And Exclusive Offers..</p>
+                        </div>
+                        <div class="single-form">
+                            <button class="main-btn main-btn-2">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Register Part Ends ======-->
