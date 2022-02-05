@@ -19,6 +19,7 @@ namespace E_commerce_BackFinal.DAL
         public DbSet<ContactUS> Contacts { get; set; }
         public DbSet<Subscribe> Subcribes { get; set; }
         public DbSet<SubscribeMail> SubscribeMails { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     }
 }

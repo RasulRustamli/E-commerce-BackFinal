@@ -1,4 +1,5 @@
-﻿@model ContactUS
+﻿
+@model E_commerce_BackFinal.ViewModels.ContactUsVm
 <!--====== Breadcrumb Part Start ======-->
 
 <div class="breadcrumb-area">
@@ -28,26 +29,40 @@
             <div class="col-lg-7 col-xl-8">
                 <div class="contact-form mt-30">
                     <h4 class="allup-title">Billing Address</h4>
-                    <form id="contact-form" action="https://demo.hasthemes.com/allup/allup/assets/contact.php" method="POST">
+                    <form id="contact-form" asp-action="Message" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="single-form">
-                                    <input type="text" name="name" placeholder="Your Name">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <input type="text" asp-for="@Model.User.FullName" name="FullName" placeholder="Your Name" disabled>
+                                    }
+                                    else
+                                    {
+                                        <input type="text" name="name" placeholder="Your Name">
+                                    }
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="single-form">
-                                    <input type="email" name="email" placeholder="Your Email">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <input type="email" asp-for="@Model.User.Email" name="Email" placeholder="Your Email" disabled>
+                                    }
+                                    else
+                                    {
+                                        <input type="email" name="email" placeholder="Your Email">
+                                    }
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="single-form">
-                                    <input type="text" name="subject" placeholder="Subject">
+                                    <input type="text" asp-for="@Model.Message.Title" name="Title" placeholder="Subject">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="single-form">
-                                    <textarea name="message" placeholder="Your Message"></textarea>
+                                    <textarea asp-for="@Model.Message.Description" name="Description" placeholder="Your Message"></textarea>
                                 </div>
                             </div>
                             <p class="form-message"></p>
@@ -56,6 +71,16 @@
                                     <button class="main-btn main-btn-2">Send Message</button>
                                 </div>
                             </div>
+                            @if (ViewBag.Message != null)
+                            {
+                                <script type="text/javascript">
+
+                            window.onload = function () {
+                                alert("@ViewBag.Message");
+                                 };
+                                </script>
+
+                            }
                         </div>
                     </form>
                 </div>
@@ -63,7 +88,7 @@
             <div class="col-lg-5 col-xl-4">
                 <div class="contact-info mt-30">
                     <h4 class="title">Contact Us</h4>
-                    <p class="text">@Model.Description</p>
+                    <p class="text">@Model.Contact.Description</p>
 
                     <ul class="contact-info-block">
                         <li>
@@ -74,7 +99,7 @@
                                     </div>
                                     <h5 class="info-title media-body">Address</h5>
                                 </div>
-                                <p>@Model.Address</p>
+                                <p>@Model.Contact.Address</p>
                             </div>
                         </li>
                         <li>
@@ -85,8 +110,8 @@
                                     </div>
                                     <h5 class="info-title media-body">Phone</h5>
                                 </div>
-                                <p>Mobile: @Model.MobileNumber</p>
-                                <p>Hotline: @Model.HotlineNumber</p>
+                                <p>Mobile: @Model.Contact.MobileNumber</p>
+                                <p>Hotline: @Model.Contact.HotlineNumber</p>
                             </div>
                         </li>
                         <li>
@@ -97,8 +122,8 @@
                                     </div>
                                     <h5 class="info-title media-body">Email</h5>
                                 </div>
-                                <p>@Model.Email</p>
-                                <p>@Model.SupportMail</p>
+                                <p>@Model.Contact.Email</p>
+                                <p>@Model.Contact.SupportMail</p>
                             </div>
                         </li>
                     </ul>
@@ -107,6 +132,7 @@
         </div>
     </div>
 </section>
+
 
 <!--====== Contact Part Ends ======-->
 <!--====== Brand Part Start ======-->
