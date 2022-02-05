@@ -17,6 +17,8 @@ namespace E_commerce_BackFinal.DAL
         public DbSet<CompanySlider> CompanySliders { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ContactUS> Contacts { get; set; }
+        public DbSet<Subscribe> Subcribes { get; set; }
+        public DbSet<SubscribeMail> SubscribeMails { get; set; }
 
     }
 }

@@ -26,6 +26,16 @@ namespace E_commerce_BackFinal.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+
+        public  async Task<IActionResult> Index()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            return View(user);
+        }
         public IActionResult Register()
         {
             return View();
@@ -173,10 +183,7 @@ namespace E_commerce_BackFinal.Controllers
         }
 
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+      
 
         public async Task CreateRole()
         {
