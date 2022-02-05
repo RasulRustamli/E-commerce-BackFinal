@@ -39,8 +39,8 @@ namespace E_commerce_BackFinal.Controllers
             return View(contactUsVm);
         }
         
-        
-        public async Task<IActionResult> Message(Message message)
+        [HttpPost]
+        public async Task<IActionResult> Message([FromForm]Message message)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -50,7 +50,7 @@ namespace E_commerce_BackFinal.Controllers
                 newMessage.Title = message.Title;
                 newMessage.Description = message.Description;
                 await _context.Messages.AddAsync(newMessage);
-                ViewBag.Message = String.Format("Hello\\Succes send Message");
+                
                 _context.SaveChanges(); 
             }
             else
@@ -59,7 +59,7 @@ namespace E_commerce_BackFinal.Controllers
                 return RedirectToAction("LogIn", "Account");
             }
 
-            return RedirectToAction(nameof(Index));
+            return Ok($"mesaj gonderildi");
         }
     }
 }
