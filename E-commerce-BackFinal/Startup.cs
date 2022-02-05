@@ -23,15 +23,12 @@ namespace E_commerce_BackFinal
             _config = config;
         }
 
-        
-
-        
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
+                opt.SignIn.RequireConfirmedEmail = true;
                 opt.Password.RequireLowercase = true;
                 opt.Password.RequiredLength = 8;
                 opt.Password.RequireNonAlphanumeric = true;

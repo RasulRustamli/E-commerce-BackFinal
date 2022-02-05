@@ -10,7 +10,7 @@ namespace E_commerce_BackFinal.Migrations
                 name: "IsActive",
                 table: "AspNetUsers",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "Photo",
