@@ -22,32 +22,44 @@
                 @Html.DisplayNameFor(model => model.IsFeature)
             </th>
             <th>
-               MainCategory
+                MainCategory
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsMain)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsFeature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MainCategory.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsMain)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsFeature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MainCategory.Name)
+                </td>
+                @if (item.IsDeleted == false)
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Active" class="btn btn-danger" asp-route-id="@item.Id">Active</a>
+                    </td>
+
+                }
+
+            </tr>
+        }
     </tbody>
 </table>

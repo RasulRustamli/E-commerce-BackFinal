@@ -28,15 +28,28 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: CategoryController
         public ActionResult Index()
         {
-            List<Category> categories = _context.Categories.Include(x => x.CategoryBrand).ThenInclude(x => x.Brand).Where(c=>c.IsDeleted==false).ToList();
+            List<Category> categories = _context.Categories.Include(x => x.CategoryBrand).ThenInclude(x => x.Brand).ToList();
             
             return View(categories);
         }
+        public async Task<ActionResult> Active(int?id)
+        {
+            if (id == null) return NotFound();
+            Category dbCategory = await _context.Categories.FindAsync(id);
+            if (dbCategory == null) return NotFound();
+            dbCategory.IsDeleted = false;
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+
+        }
 
         // GET: CategoryController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int?id)
         {
-            return View();
+            if (id == null) return NotFound();
+            Category dbCategory = await _context.Categories.FindAsync(id);
+            if (dbCategory == null) return NotFound();
+            return View(dbCategory);
         }
 
         // GET: CategoryController/Create
@@ -204,14 +217,6 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             if (dbCategory == null) return NotFound();
             if (dbCategory.IsMain)
             {
-                string path = Path.Combine(_env.WebRootPath, "images/category/", dbCategory.PhotoUrl);
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-                }
-            }
-            if (dbCategory.IsMain)
-            {
                 bool isSubcategory = _context.Categories.Any(c => c.MainCategory.Id == category.Id);
                 if (isSubcategory)
                 {
@@ -219,6 +224,11 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
                 }
                 else
                 {
+                    string path = Path.Combine(_env.WebRootPath, "images/category/", dbCategory.PhotoUrl);
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
                     _context.Categories.Remove(dbCategory);
 
                 }
@@ -230,7 +240,6 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
 
             _context.Categories.Remove(dbCategory);
             await _context.SaveChangesAsync();
-
             return RedirectToAction("Index");
         }
     }
