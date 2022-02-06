@@ -14,6 +14,8 @@
     <Compile Remove="Migrations\20220205121621_addSubcribeMailandSubscribeTable.Designer.cs" />
     <Compile Remove="Migrations\20220206111404_addBrandTableManyToMany.cs" />
     <Compile Remove="Migrations\20220206111404_addBrandTableManyToMany.Designer.cs" />
+    <Compile Remove="Migrations\20220206184244_as.cs" />
+    <Compile Remove="Migrations\20220206184244_as.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +32,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\category\" />
   </ItemGroup>
 
 </Project>
