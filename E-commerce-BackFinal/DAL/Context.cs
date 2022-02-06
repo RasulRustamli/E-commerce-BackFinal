@@ -20,6 +20,9 @@ namespace E_commerce_BackFinal.DAL
         public DbSet<Subscribe> Subcribes { get; set; }
         public DbSet<SubscribeMail> SubscribeMails { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<CategoryBrand> CategoryBrands { get; set; }
 
     }
 }

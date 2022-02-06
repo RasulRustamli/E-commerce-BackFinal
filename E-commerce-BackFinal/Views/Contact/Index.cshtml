@@ -149,21 +149,24 @@
                     Title: $("#Message_Title").val(),
                     Description: $("#Message_Description").val(),
                 };
-                console.log(formData)
                 $.ajax({
                     url: "/contact/message",
                     type: "post",
                     data: formData,
                     success: function (response) {
-                        Swal.fire(
-                            'The Internet?',
-                            'That thing is still around?',
-                            'question'
-                        ).then(function (result) {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function (result) {
                             // document.getElementsByClassName("cbr-alert")[0].style.display = "none"
                             $("#Message_Title").val("");
                             $("#Message_Description").val("");
                         })
+                        
+                        //toastr.warning('Have fun storming the castle!', Admin:)
                     },
                     error: function (error) { }
                 })

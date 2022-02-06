@@ -4,14 +4,16 @@ using E_commerce_BackFinal.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_commerce_BackFinal.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220206105619_addCategoryTable")]
+    partial class addCategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,22 +100,6 @@ namespace E_commerce_BackFinal.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("E_commerce_BackFinal.Models.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Brands");
-                });
-
             modelBuilder.Entity("E_commerce_BackFinal.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -142,28 +128,6 @@ namespace E_commerce_BackFinal.Migrations
                     b.HasIndex("MainCategoryId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("E_commerce_BackFinal.Models.CategoryBrand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("CategoryBrands");
                 });
 
             modelBuilder.Entity("E_commerce_BackFinal.Models.CompanySlider", b =>
@@ -437,23 +401,8 @@ namespace E_commerce_BackFinal.Migrations
             modelBuilder.Entity("E_commerce_BackFinal.Models.Category", b =>
                 {
                     b.HasOne("E_commerce_BackFinal.Models.Category", "MainCategory")
-                        .WithMany("SubCategory")
+                        .WithMany()
                         .HasForeignKey("MainCategoryId");
-                });
-
-            modelBuilder.Entity("E_commerce_BackFinal.Models.CategoryBrand", b =>
-                {
-                    b.HasOne("E_commerce_BackFinal.Models.Brand", "Brand")
-                        .WithMany("CategoryBrand")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("E_commerce_BackFinal.Models.Category", "Category")
-                        .WithMany("CategoryBrand")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("E_commerce_BackFinal.Models.Message", b =>

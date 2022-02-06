@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20220205121457_addSubcribeMailandSubscribeTable.Designer.cs" />
     <Compile Remove="Migrations\20220205121621_addSubcribeMailandSubscribeTable.cs" />
     <Compile Remove="Migrations\20220205121621_addSubcribeMailandSubscribeTable.Designer.cs" />
+    <Compile Remove="Migrations\20220206111404_addBrandTableManyToMany.cs" />
+    <Compile Remove="Migrations\20220206111404_addBrandTableManyToMany.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

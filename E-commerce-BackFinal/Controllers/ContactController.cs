@@ -50,16 +50,19 @@ namespace E_commerce_BackFinal.Controllers
                 newMessage.Title = message.Title;
                 newMessage.Description = message.Description;
                 await _context.Messages.AddAsync(newMessage);
-                
-                _context.SaveChanges(); 
-            }
-            else
-            {
-                
-                return RedirectToAction("LogIn", "Account");
+
+                _context.SaveChanges();
+
             }
 
-            return Ok($"mesaj gonderildi");
+            else
+            {
+                return RedirectToAction("LogIn", "Account");
+            }
+                
+            
+
+            return Ok(new { Message="Success your send message"});
         }
     }
 }
