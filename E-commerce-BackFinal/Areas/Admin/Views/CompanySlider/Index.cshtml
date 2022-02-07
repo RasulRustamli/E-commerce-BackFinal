@@ -4,7 +4,7 @@
         <div class="card-body">
             <h4 class="card-title">Company Sliders Table</h4>
             <p class="card-description">
-                <a class="btn btn-primary" asp-controller="CompanySlider" asp-action="Create"> Create Slider</a>
+                <a class="btn btn-primary" asp-controller="CompanySlider" asp-action="Create" > Create Slider</a>
             </p>
             <div class="table-responsive">
                 <table class="table">
@@ -28,8 +28,8 @@
                             </td>
                             <td>
 
-                                <a asp-controller="CompanySlider" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success"><i class="mdi mdi-table-edit"></i></a>
-                                <a asp-controller="CompanySlider" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="mdi mdi-account-remove"></i></a>
+                                <a asp-controller="CompanySlider" asp-action="Edit" class="btn btn-outline-success" asp-route-id="@item.Id" class="btn btn-success"><i class="mdi mdi-table-edit"></i></a>
+                                <a asp-controller="CompanySlider" asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id" class="btn btn-danger"><i class="mdi mdi-account-remove"></i></a>
 
                             </td>
                         </tr>}

@@ -160,9 +160,13 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             
             if (!category.IsMain)
             {
-                newCategory.MainCategory = category.MainCategory;
+
+                newCategory.MainCategory = await _context.Categories.FindAsync(category.MainCategory.Id);
                 newCategory.Name = category.Name;
-                
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+
             }
             if (category.Photo != null)
             {
@@ -187,11 +191,13 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
                     System.IO.File.Delete(path);
                 }
                 string fileName = await category.Photo.SaveImageAsync(_env.WebRootPath, "images/category");
-                newCategory.IsFeature = category.IsFeature;
-                newCategory.Name = category.Name;
                 newCategory.PhotoUrl = fileName;
 
             }
+            newCategory.Name = category.Name;
+            newCategory.IsFeature = category.IsFeature;
+
+
             await _context.SaveChangesAsync();
             
             return RedirectToAction("Index");

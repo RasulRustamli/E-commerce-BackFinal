@@ -34,7 +34,8 @@
                 @Html.DisplayNameFor(model => model.Photo)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PhotoUrl)
+                <img src="~/images/category/@Html.DisplayFor(model => model.PhotoUrl)" alt="Alternate Text" />
+                
             </dd>
         }
     </dl>
