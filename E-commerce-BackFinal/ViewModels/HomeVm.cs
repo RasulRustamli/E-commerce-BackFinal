@@ -10,5 +10,6 @@ namespace E_commerce_BackFinal.ViewModels
     {
         public List<CompanySlider> companySliders { get; set; }
         public List<Service> services { get; set; }
+        public List<Category> categories { get; set; }
     }
 }

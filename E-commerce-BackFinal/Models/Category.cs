@@ -20,6 +20,8 @@ namespace E_commerce_BackFinal.Models
         public Category MainCategory { get; set; }
         public List<Category> SubCategory { get; set; }
         public List<CategoryBrand> CategoryBrand { get; set; }
+        
+
         [NotMapped]
         public IFormFile Photo { get; set; }
 

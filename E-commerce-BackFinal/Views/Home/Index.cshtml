@@ -1,10 +1,14 @@
-﻿<html >
-
+﻿@model HomeVm
+@{
+    ViewData["Title"] = "Home Page";
+    int count = 1;
+}
+<html>  
 
 <body>
 
 
-    
+
     <!--====== Slider Part Start ======-->
 
     <section class="slider-area slider-active">
@@ -72,107 +76,140 @@
                     </div>
                 </div>
             </div> <!-- row -->
-            <div class="row category-active">
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-1.jpg" alt="category">
-                            <p>Laptop</p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+            <div class="row-wrapper category-active">
+                <div class="custom-col">
+                    @foreach (var category in Model.categories)
+                    {
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category/@category.PhotoUrl" style="width:133px;height:133px" alt="category">
+                                <p>@category.Name</p>
+                            </a>
+                        </div>
+                        if (count % 2 == 0 && count != Model.categories.Count)
+                        {
+                            @Html.Raw("</div>");
+                            @Html.Raw("<div class='custom-col'>");
+                        }
+                        count++;
+                    }
+                </div>
+                    <!--<div class="row category-active">
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-1.jpg" alt="category">
+                                <p>Laptop</p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-2.jpg" alt="category">
                             <p>Computer</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-3.jpg" alt="category">
-                            <p>Smartphone</p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-3.jpg" alt="category">
+                                <p>Smartphone</p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-4.jpg" alt="category">
                             <p>Game Consoles</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-5.jpg" alt="category">
-                            <p>Bottoms</p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-5.jpg" alt="category">
+                                <p>Bottoms</p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-6.jpg" alt="category">
                             <p>Tops & Sets</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-7.jpg" alt="category">
-                            <p>Audio & Video</p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-7.jpg" alt="category">
+                                <p>Audio & Video</p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-8.jpg" alt="category">
                             <p>Accessories</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-9.jpg" alt="category">
-                            <p>Camera</p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-9.jpg" alt="category">
+                                <p>Camera</p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-10.jpg" alt="category">
                             <p>Accessories</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-11.jpg" alt="category">
-                            <p> Games & Consoles </p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-11.jpg" alt="category">
+                                <p> Games & Consoles </p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-12.jpg" alt="category">
                             <p>Video Games</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/images/category-1.jpg" alt="category">
-                            <p>Tops & Sets</p>
-                        </a>
-                    </div> <!-- single category -->
-                    <div class="single-category text-center">
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    <div class="col-lg-2">
+                        <div class="single-category text-center">
+                            <a target="_blank" href="shop-left-sidebar.html">
+                                <img src="~/images/category-1.jpg" alt="category">
+                                <p>Tops & Sets</p>
+                            </a>
+                        </div>-->
+                    <!-- single category -->
+                    <!--<div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
                             <img src="~/images/category-2.jpg" alt="category">
                             <p>Bottoms</p>
                         </a>
-                    </div> <!-- single category -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
+                    </div>-->
+                    <!-- single category -->
+                    <!--</div>
+                    </div>-->
+                    <!-- row -->
+                </div> <!-- container -->
     </section>
 
     <!--====== Category Part Ends ======-->

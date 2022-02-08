@@ -12,5 +12,6 @@ namespace E_commerce_BackFinal.Models
         [Required(ErrorMessage = "dont empty")]
         public string Name { get; set; }
         public List<CategoryBrand> CategoryBrand { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

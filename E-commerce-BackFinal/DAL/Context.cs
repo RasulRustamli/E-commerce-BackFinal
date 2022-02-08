@@ -23,6 +23,15 @@ namespace E_commerce_BackFinal.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<CategoryBrand> CategoryBrands { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<ProductPhoto> ProductPhotos { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<ColorProduct> ColorProducts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
+        public DbSet<ProductRelation> ProductRelations { get; set; }
+
 
     }
 }

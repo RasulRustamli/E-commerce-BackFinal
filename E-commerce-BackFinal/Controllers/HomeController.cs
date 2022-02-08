@@ -26,12 +26,15 @@ namespace E_commerce_BackFinal.Controllers
         {
             List<CompanySlider> companySliders = _context.CompanySliders.ToList();
             List<Service> services = _context.Services.ToList();
+            List<Category> categories = _context.Categories.Where(c=>c.IsMain==true).ToList();
             HomeVm homeVm = new HomeVm();
             homeVm.companySliders = companySliders;
             homeVm.services = services;
+            homeVm.categories = categories;
+            ViewBag.FeatCategories = categories.Where(c => c.IsFeature == true);
             ViewData["CompanySliders"] = companySliders;
             ViewData["Services"] = services;
-            return View();
+            return View(homeVm);
         }
 
         public IActionResult Privacy()

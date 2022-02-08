@@ -16,6 +16,8 @@
     <Compile Remove="Migrations\20220206111404_addBrandTableManyToMany.Designer.cs" />
     <Compile Remove="Migrations\20220206184244_as.cs" />
     <Compile Remove="Migrations\20220206184244_as.Designer.cs" />
+    <Compile Remove="Migrations\20220209055835_addCampaingColumn.cs" />
+    <Compile Remove="Migrations\20220209055835_addCampaingColumn.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
