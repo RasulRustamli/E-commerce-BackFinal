@@ -28,6 +28,8 @@ namespace E_commerce_BackFinal.Models
         public int CampaignId { get; set; }
         public Campaign Campaign { get; set; }
         public List<ProductPhoto> productPhotos { get; set; }
+        public List<ProductTag> ProductTags { get; set; }
+        public List<ColorProduct> ColorProducts { get; set; }
         [NotMapped]
         [Required]
         public IFormFile[] Photos { get; set; }

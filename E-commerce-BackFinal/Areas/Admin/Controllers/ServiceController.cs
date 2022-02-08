@@ -131,7 +131,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
                     ModelState.AddModelError("Photo", "300den yuxari ola bilmez");
                     return View();
                 }
-                string path = Path.Combine(_env.WebRootPath, "img", isExistService.IconUrl);
+                string path = Path.Combine(_env.WebRootPath, "images", isExistService.IconUrl);
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
