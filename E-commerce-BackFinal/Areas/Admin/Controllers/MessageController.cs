@@ -1,5 +1,6 @@
 ﻿using E_commerce_BackFinal.DAL;
 using E_commerce_BackFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace E_commerce_BackFinal.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
 
     public class MessageController : Controller
     {

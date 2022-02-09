@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace E_commerce_BackFinal.Areas.Admin.Controllers
 {
+    
     [Area("Admin")]
     
+
     public class DashboardController : Controller
     {
         public IActionResult Index()

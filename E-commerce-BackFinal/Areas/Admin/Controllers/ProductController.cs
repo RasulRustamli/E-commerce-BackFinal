@@ -1,6 +1,7 @@
 ﻿using E_commerce_BackFinal.DAL;
 using E_commerce_BackFinal.Extensions;
 using E_commerce_BackFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 namespace E_commerce_BackFinal.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly IWebHostEnvironment _env;
@@ -354,20 +356,23 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
                 }
                 
             }
-           
             await _context.SaveChangesAsync();
-
-
-
-
 
             return RedirectToAction("Index");
         }
 
         // GET: ProductController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int?id)
         {
-            return View();
+            if (id == null) return NotFound();
+            Product product = await _context.Products.Include(p => p.Campaign).Include(p => p.Brand).FirstOrDefaultAsync(p => p.Id == id);
+            var relation = _context.ProductRelations.Where(b => b.ProductId == id && b.BrandId == product.BrandId).FirstOrDefault();
+            Category category = await _context.Categories.FindAsync(relation.CategoryId);
+            ViewBag.category = category;
+            
+            ViewBag.color = await _context.ColorProducts.Where(p => p.ProductId == id).Select(c => c.Color).ToListAsync();
+            ViewBag.photo = _context.ProductPhotos.Where(p => p.ProductId == product.Id && p.IsMain == true).FirstOrDefault();
+            return View(product);
         }
 
         // POST: ProductController/Delete/5

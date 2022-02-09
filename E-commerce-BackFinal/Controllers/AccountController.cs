@@ -94,7 +94,7 @@ namespace E_commerce_BackFinal.Controllers
             smtp.Send(mail);
 
 
-            //await _userManager.AddToRoleAsync(user, "Member");
+            await _userManager.AddToRoleAsync(user, "Member");
 
             TempData["Success"] = "Please confirm email";
 
@@ -166,11 +166,11 @@ namespace E_commerce_BackFinal.Controllers
                 return View();
             }
 
-            //var roles = await _userManager.GetRolesAsync(dbUser);
-            //if (roles[0] == "Admin")
-            //{
-            //    return RedirectToAction("Index", "Dashboard", new { area = "AdminArea" });
-            //};
+            var roles = await _userManager.GetRolesAsync(dbUser);
+            if (roles[0] == "Admin")
+            {
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+            };
 
             return RedirectToAction("Index", "Home");
         }
