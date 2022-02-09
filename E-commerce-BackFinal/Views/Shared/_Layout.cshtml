@@ -58,11 +58,8 @@
     <!--====== Header Part Start ======-->
     @await Component.InvokeAsync("Header")
     <!--====== Header Part Ends ======-->
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    @RenderBody()
+
 
     <!--====== Footer Part Start ======-->
     @await Component.InvokeAsync("Footer")

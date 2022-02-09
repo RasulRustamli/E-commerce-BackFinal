@@ -4,14 +4,16 @@ using E_commerce_BackFinal.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_commerce_BackFinal.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220209212601_addBlogTable")]
+    partial class addBlogTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,6 +113,9 @@ namespace E_commerce_BackFinal.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -127,29 +132,6 @@ namespace E_commerce_BackFinal.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("E_commerce_BackFinal.Models.BlogPhoto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("BlogPhotos");
                 });
 
             modelBuilder.Entity("E_commerce_BackFinal.Models.Brand", b =>
@@ -683,15 +665,6 @@ namespace E_commerce_BackFinal.Migrations
                     b.HasOne("E_commerce_BackFinal.Models.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("E_commerce_BackFinal.Models.BlogPhoto", b =>
-                {
-                    b.HasOne("E_commerce_BackFinal.Models.Blog", "Blog")
-                        .WithMany("BlogPhotos")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("E_commerce_BackFinal.Models.Category", b =>

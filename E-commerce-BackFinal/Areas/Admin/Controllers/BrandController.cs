@@ -173,13 +173,15 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             List<CategoryBrand> categoryBrand = await _context.CategoryBrands.ToListAsync();
             foreach (var item in categoryBrand)
             {
-                
-                    _context.CategoryBrands.Remove(item);
+                CategoryBrand DeleteBrand = await _context.CategoryBrands.FirstOrDefaultAsync(c => c.BrandId == brand.Id);
+                if (DeleteBrand != null)
+                {
+                    _context.CategoryBrands.Remove(DeleteBrand);
                     await _context.SaveChangesAsync();
-                
+                }
 
             }
-            _context.Brands.Remove(brand);
+            _context.Brands.Remove(_brand);
             await _context.SaveChangesAsync();
 
             return View();
