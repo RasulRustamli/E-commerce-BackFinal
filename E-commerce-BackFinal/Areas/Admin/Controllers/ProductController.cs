@@ -30,7 +30,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            List<Product> product = _context.Products.Include(c=>c.Campaign).Include(b=>b.Brand).ToList();
+            List<Product> product = _context.Products.Include(c => c.Campaign).Include(b => b.Brand).ToList();
             return View(product);
         }
 
@@ -50,11 +50,11 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            
+
             var brands = new SelectList(_context.Brands.OrderBy(l => l.Name)
             .ToDictionary(us => us.Id, us => us.Name), "Key", "Value");
             ViewBag.Brand = brands;
-            var campaign=  new SelectList(_context.Campaigns.OrderBy(l => l.Discount)
+            var campaign = new SelectList(_context.Campaigns.OrderBy(l => l.Discount)
              .ToDictionary(us => us.Id, us => us.Discount), "Key", "Value");
             ViewBag.Campaign = campaign;
             var colors = _context.Colors.ToList();
@@ -70,7 +70,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Product product, int categoryid, int[] tagId, int[] colorId)
         {
-           
+
             if (categoryid == 0) return NotFound();
 
             Product newproduct = new Product()
@@ -155,11 +155,11 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         }
 
         // GET: ProductController/Edit/5
-        public async Task<ActionResult> Edit(int?id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
             Product product = await _context.Products.FindAsync(id);
-            var relation = _context.ProductRelations.Where(b => b.ProductId == id && b.BrandId == product.BrandId).FirstOrDefault() ;
+            var relation = _context.ProductRelations.Where(b => b.ProductId == id && b.BrandId == product.BrandId).FirstOrDefault();
             Category category = await _context.Categories.FindAsync(relation.CategoryId);
             var brands = new SelectList(_context.Brands.OrderBy(l => l.Name)
             .ToDictionary(us => us.Id, us => us.Name), "Key", "Value");
@@ -171,29 +171,29 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             var photos = _context.ProductPhotos.Where(p => p.ProductId == id).ToList();
             ViewBag.photos = photos;
 
-            var checkTag = await _context.ProductTags.Where(p => p.ProductId == id).Select(t=>t.Tag).ToListAsync();
-            var checkColor = await _context.ColorProducts.Where(p => p.ProductId == id).Select(c=>c.Color).ToListAsync();
+            var checkTag = await _context.ProductTags.Where(p => p.ProductId == id).Select(t => t.Tag).ToListAsync();
+            var checkColor = await _context.ColorProducts.Where(p => p.ProductId == id).Select(c => c.Color).ToListAsync();
             ViewBag.checkTag = checkTag;
             ViewBag.checkColor = checkColor;
-            
+
             var allTag = await _context.Tags.ToListAsync();
             var allColor = await _context.Colors.ToListAsync();
-            
+
             var noneCheckTag = allTag.Except(checkTag);
             var noneCheckColor = allColor.Except(checkColor);
             ViewBag.noneTag = noneCheckTag;
             ViewBag.noneColor = noneCheckColor;
-            
+
             return View(product);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int?id,Product product, int categoryid, List<int> tagId, List<int> colorId)
+        public async Task<ActionResult> Edit(int? id, Product product, int categoryid, List<int> tagId, List<int> colorId)
         {
-            if (categoryid == null) return RedirectToAction("Edit","Product");
-            
+            if (categoryid == null) return RedirectToAction("Edit", "Product");
+
             Product newProduct = await _context.Products.FindAsync(id);
             var relationProduct = _context.ProductRelations.Where(p => p.ProductId == id && p.BrandId == newProduct.BrandId).FirstOrDefault();
 
@@ -251,7 +251,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
 
                 if (removedTagLength >= i)
                 {
-                   ProductTag productTag = await _context.ProductTags.FirstOrDefaultAsync(c => c.TagId == removeTag[i - 1] && c.ProductId == newProduct.Id);
+                    ProductTag productTag = await _context.ProductTags.FirstOrDefaultAsync(c => c.TagId == removeTag[i - 1] && c.ProductId == newProduct.Id);
                     _context.ProductTags.Remove(productTag);
                     await _context.SaveChangesAsync();
                 }
@@ -286,7 +286,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
                 var oldPhoto = _context.ProductPhotos.Where(p => p.ProductId == newProduct.Id).ToList();
 
 
-                if(oldPhoto.Count<=product.Photos.Length)
+                if (oldPhoto.Count <= product.Photos.Length)
                 {
                     foreach (var item in oldPhoto)
                     {
@@ -325,12 +325,12 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
                         await _context.SaveChangesAsync();
                         count++;
                     }
-                   
-                   
+
+
                 }
                 else
                 {
-                    for (int i = 0; i <product.Photos.Length; i++)
+                    for (int i = 0; i < product.Photos.Length; i++)
                     {
                         if (!product.Photos[i].IsImage())
                         {
@@ -354,7 +354,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
 
                     }
                 }
-                
+
             }
             await _context.SaveChangesAsync();
 
@@ -362,14 +362,14 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         }
 
         // GET: ProductController/Delete/5
-        public async Task<ActionResult> Delete(int?id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
             Product product = await _context.Products.Include(p => p.Campaign).Include(p => p.Brand).FirstOrDefaultAsync(p => p.Id == id);
             var relation = _context.ProductRelations.Where(b => b.ProductId == id && b.BrandId == product.BrandId).FirstOrDefault();
             Category category = await _context.Categories.FindAsync(relation.CategoryId);
             ViewBag.category = category;
-            
+
             ViewBag.color = await _context.ColorProducts.Where(p => p.ProductId == id).Select(c => c.Color).ToListAsync();
             ViewBag.photo = _context.ProductPhotos.Where(p => p.ProductId == product.Id && p.IsMain == true).FirstOrDefault();
             return View(product);
@@ -378,16 +378,51 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int? id, Product product)
         {
-            try
+            var newProduct = await _context.Products.FindAsync(id);
+            if (newProduct == null) return NotFound();
+
+            var productColor = _context.ColorProducts.Where(p => p.ProductId == id).ToList();
+            if (productColor != null)
             {
-                return RedirectToAction(nameof(Index));
+                foreach (var item in productColor)
+                {
+                    _context.ColorProducts.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
             }
-            catch
+            var productTags = _context.ProductTags.Where(p => p.ProductId == id).ToList();
+            if (productTags != null)
             {
-                return View();
+                foreach (var item in productTags)
+                {
+                    _context.ProductTags.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
             }
+            var relationProduct = _context.ProductRelations.FirstOrDefault(p => p.ProductId == id && p.BrandId == newProduct.BrandId);
+            _context.ProductRelations.Remove(relationProduct);
+
+
+            if (newProduct.Photos != null)
+            {
+                var oldPhoto = _context.ProductPhotos.Where(p => p.ProductId == newProduct.Id).ToList();
+                foreach (var item in oldPhoto)
+                {
+                    string path = Path.Combine(_env.WebRootPath, "images/product/", item.PhotoUrl);
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
+                    _context.ProductPhotos.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            _context.Products.Remove(newProduct);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
     }
 }
