@@ -31,7 +31,7 @@ namespace E_commerce_BackFinal.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
                     PhotoUrl = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false)

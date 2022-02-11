@@ -39,7 +39,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: BlogController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return Ok();
         }
 
         // GET: BlogController/Create
@@ -117,7 +117,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: BlogController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return Ok();
         }
 
         // POST: BlogController/Edit/5
@@ -131,14 +131,14 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             }
             catch
             {
-                return View();
+                return Ok();
             }
         }
 
         // GET: BlogController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return Ok();
         }
 
         // POST: BlogController/Delete/5
@@ -152,7 +152,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             }
             catch
             {
-                return View();
+                return Ok();
             }
         }
     }

@@ -2,6 +2,7 @@
 using E_commerce_BackFinal.Models;
 using E_commerce_BackFinal.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,18 @@ namespace E_commerce_BackFinal.Controllers
 
         public IActionResult Index()
         {
-            List<CompanySlider> companySliders = _context.CompanySliders.ToList();
-            List<Service> services = _context.Services.ToList();
+            
             List<Category> categories = _context.Categories.Where(c=>c.IsMain==true).ToList();
+            List<Product> products = _context.Products.Include(p => p.Campaign).Include(p => p.productPhotos).Include(p => p.Brand).ToList();
+
             HomeVm homeVm = new HomeVm();
-            homeVm.companySliders = companySliders;
-            homeVm.services = services;
+
+            ViewBag.newarrive = products.OrderByDescending(p => p.Id).Take(7).ToList();
+
             homeVm.categories = categories;
+            homeVm.products = products;
             ViewBag.FeatCategories = categories.Where(c => c.IsFeature == true);
-            ViewData["CompanySliders"] = companySliders;
-            ViewData["Services"] = services;
+           
             return View(homeVm);
         }
 

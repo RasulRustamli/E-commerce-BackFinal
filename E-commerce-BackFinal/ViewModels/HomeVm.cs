@@ -8,8 +8,8 @@ namespace E_commerce_BackFinal.ViewModels
 {
     public class HomeVm
     {
-        public List<CompanySlider> companySliders { get; set; }
-        public List<Service> services { get; set; }
+        
         public List<Category> categories { get; set; }
+        public List<Product> products { get; set; }
     }
 }

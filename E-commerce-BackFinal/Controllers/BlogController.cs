@@ -22,8 +22,9 @@ namespace E_commerce_BackFinal.Controllers
         }
         public IActionResult Index()
         {
-            var blog =  _context.Blogs.ToList();
+            var blog =  _context.Blogs.Include(b=>b.User).ToList();
             var photos = _context.BlogPhotos.ToList();
+            
             ViewBag.photos = photos;
             return View(blog);
         }

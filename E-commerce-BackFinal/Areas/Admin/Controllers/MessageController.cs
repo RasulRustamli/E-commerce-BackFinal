@@ -51,7 +51,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: MessageController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return Ok();
         }
 
         // POST: MessageController/Edit/5
@@ -65,7 +65,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
             }
             catch
             {
-                return View();
+                return Ok();
             }
         }
 

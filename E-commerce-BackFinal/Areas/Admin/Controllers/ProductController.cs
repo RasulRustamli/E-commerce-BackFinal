@@ -37,7 +37,7 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return Ok();
         }
         public ActionResult CallCategory(int? id)
         {
