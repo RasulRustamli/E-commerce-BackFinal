@@ -26,12 +26,13 @@ namespace E_commerce_BackFinal.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var UserId = String.Empty;
             if (User.Identity.IsAuthenticated)
             {
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
                 ViewBag.Username = user.FullName;
+                UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             }
-            var UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             string basket = Request.Cookies["basketcookie"];
 
             List<BasketProduct> basketProducts = new List<BasketProduct>();
