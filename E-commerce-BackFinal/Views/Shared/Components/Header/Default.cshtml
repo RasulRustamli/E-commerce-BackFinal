@@ -388,7 +388,7 @@
                                     </ul>
                                 </li>
                                 <li class="position-static">
-                                    <a href="#">Shop <i class="fal fa-chevron-down"></i></a>
+                                    <a asp-controller="Product" asp-action="Index">Shop <i class="fal fa-chevron-down"></i></a>
                                     <ul class="mega-sub-menu d-flex flex-wrap">
                                         <li>
                                             <a class="menu-title" href="#">Shop Grid</a>
@@ -400,7 +400,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a class="menu-title" href="#">Shop List</a>
+                                            <a class="menu-title" asp-controller="Product" asp-action="Index">Shop List</a>
                                             <ul class="submenu-item">
                                                 <li><a href="shop-list.html">Shop List</a></li>
                                                 <li><a href="shop-list-left-sidebar.html">Shop List Left sidebar</a></li>
@@ -464,7 +464,7 @@
                                     </ul> <!--  mega sub menu -->
                                 </li>
                                 <li>
-                                    <a href="#">Blog <i class="fal fa-chevron-down"></i></a>
+                                    <a asp-controller="Blog" asp-action="Index">Blog <i class="fal fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
                                         <li>
                                             <a href="#">Blog Grid <i class="fal fa-chevron-right"></i></a>
@@ -489,7 +489,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
                             </ul>
                         </div> <!-- header horizontal menu -->
                     </div>

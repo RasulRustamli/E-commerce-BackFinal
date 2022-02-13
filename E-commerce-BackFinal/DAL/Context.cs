@@ -37,6 +37,8 @@ namespace E_commerce_BackFinal.DAL
         public DbSet<Sales> Sales { get; set; }
 
         public DbSet<SalesProduct> SalesProducts { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<About> Abouts { get; set; }
 
 
     }

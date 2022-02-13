@@ -9,7 +9,9 @@ namespace E_commerce_BackFinal.Areas.Admin.Controllers
 {
     
     [Area("Admin")]
-    
+    [Authorize(Roles = "Admin")]
+
+
 
     public class DashboardController : Controller
     {
