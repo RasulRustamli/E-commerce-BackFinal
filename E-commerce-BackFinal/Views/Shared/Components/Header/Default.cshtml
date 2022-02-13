@@ -1,4 +1,5 @@
-﻿<!--====== Header Part Start ======-->
+﻿@model IEnumerable<BasketProduct>
+<!--====== Header Part Start ======-->
 
 <header class="header-area">
     <div class="desktop-nav d-none d-lg-block">
@@ -68,7 +69,7 @@
                     <div class="col-lg-3">
                         <div class="header-logo-contact d-flex  ">
                             <div class="desktop-logo">
-                                <a href="index.html">
+                                <a asp-controller="Home" asp-action="Index">
                                     <img src="~/images/logo.png" alt="Logo">
                                 </a>
                             </div> <!-- desktop logo -->
@@ -195,71 +196,77 @@
                                     <button><i class="icon ion-android-search"></i></button>
                                 </form>
                             </div>
-                            <div class="header-cart">
-                                <div class="cart-btn">
-                                    <a href="#">
-                                        <i class="icon ion-bag"></i>
-                                        <span class="text">Cart :</span>
-                                        <span class="total">$0.00</span>
-                                        <span class="count">0</span>
-                                    </a>
-                                </div>
-                                <div class="mini-cart">
-                                    <ul class="cart-items">
+                        @{ 
+                            double totalprice =0;
+                             int count =0;
+                        }
+                        <div class="header-cart">
+                            <div class="mini-cart">
+                                <ul class="cart-items">
+                                    @foreach (var item in Model)
+                                    {
                                         <li>
                                             <div class="single-cart-item d-flex">
                                                 <div class="cart-item-thumb">
-                                                    <a href="single-product.html"><img src="~/images/product-cart/cart-1.jpg" alt="product"></a>
-                                                    <span class="product-quantity">1x</span>
+                                                    <a href="single-product.html"><img src="~/images/product/@item.PhotoUrl" alt="product"></a>
+                                                    <span class="product-quantity">x @item.Count</span>
                                                 </div>
                                                 <div class="cart-item-content media-body">
-                                                    <h5 class="product-name"><a href="single-product.html">New Balance Fresh Foam LAZR</a></h5>
-                                                    <span class="product-price">€18.90</span>
-                                                    <span class="product-color"><strong>Color:</strong> White</span>
-                                                    <a href="#" class="product-close"><i class="fal fa-times"></i></a>
+                                                    <h5 class="product-name"><a href="single-product.html">@item.Name</a></h5>
+                                                    @if (item.Discount == 0)
+                                                    {
+                                                        var totalll = item.Count * item.Price;
+                                                        <span class="product-price">€@totalll</span>
+                                                        totalprice += totalll;
+                                                        count += item.Count;
+                                                    }
+                                                    else
+                                                    {
+
+                                                        double salePrice = 0;
+                                                        salePrice = Convert.ToDouble(item.Price - ((item.Price) * (item.Discount) / 100));
+                                                        var totalll = item.Count * salePrice;
+                                                        totalprice += totalll;
+                                                        count += item.Count;
+
+                                                        <span class="product-price">€@totalll</span>
+                                                    }
+
+                                                    <a  asp-controller="Basket" asp-action="BasketRemove" asp-route-id="@item.Id" class="product-close"><i class="fal fa-times"></i></a>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="single-cart-item d-flex">
-                                                <div class="cart-item-thumb">
-                                                    <a href="single-product.html"><img src="~/images/product-cart/cart-2.jpg" alt="product"></a>
-                                                    <span class="product-quantity">3x</span>
-                                                </div>
-                                                <div class="cart-item-content media-body">
-                                                    <h5 class="product-name"><a href="single-product.html">New Balance Fresh Foam LAZR</a></h5>
-                                                    <span class="product-price">€18.90</span>
-                                                    <span class="product-color"><strong>Color:</strong> White</span>
-                                                    <a href="#" class="product-close"><i class="fal fa-times"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="price_content">
-                                        <div class="cart-subtotals">
-                                            <div class="products price_inline">
-                                                <span class="label">Subtotal</span>
-                                                <span class="value">€30.80</span>
-                                            </div>
-                                            <div class="shipping price_inline">
-                                                <span class="label">Shipping</span>
-                                                <span class="value">€7.00</span>
-                                            </div>
-                                            <div class="tax price_inline">
-                                                <span class="label">Taxes</span>
-                                                <span class="value">€0.00</span>
-                                            </div>
+                                    }
+
+
+                                </ul>
+                                <div class="price_content">
+                                    <div class="cart-subtotals">
+                                        
+                                        <div class="tax price_inline">
+                                            <span class="label">Taxes</span>
+                                            <span class="value">€0.00</span>
                                         </div>
-                                        <div class="cart-total price_inline">
-                                            <span class="label">Total</span>
-                                            <span class="value">€37.80</span>
-                                        </div>
-                                    </div> <!-- price content -->
-                                    <div class="checkout text-center">
-                                        <a href="checkout.html" class="main-btn">Checkout</a>
                                     </div>
-                                </div> <!-- mini cart -->
+                                    <div class="cart-total price_inline">
+                                        <span class="label">Total</span>
+                                        <span class="value">€@totalprice</span>
+                                    </div>
+                                </div> <!-- price content -->
+                                <div class="checkout text-center">
+                                    <a class="main-btn" asp-controller="Sales" asp-action="Index">Checkout</a>
+                                </div>
+                            </div> <!-- mini cart -->
+
+                            <div class="cart-btn">
+                                <a asp-controller="Basket" asp-action="ShowBasket">
+                                    <i class="icon ion-bag"></i>
+                                    <span class="text">Cart:</span>
+                                    <span class="total">€@totalprice</span>
+                                    <span class="count">@count</span>
+                                </a>
                             </div>
+                        </div>
                         </div> <!-- header search cart -->
                     </div>
                 </div> <!-- row -->
