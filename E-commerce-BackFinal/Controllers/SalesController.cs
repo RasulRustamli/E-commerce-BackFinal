@@ -69,7 +69,6 @@ namespace E_commerce_BackFinal.Controllers
         [HttpPost]
         public async Task<ActionResult> Sales(Sales sales)
         {
-
             if (!User.Identity.IsAuthenticated) return RedirectToAction("index", "home");
 
             string UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -81,7 +80,7 @@ namespace E_commerce_BackFinal.Controllers
             _sales.UserId = _user.Id;
 
 
-            List<BasketProduct> UserBaket = JsonConvert.DeserializeObject<List<BasketProduct>>(Request.Cookies["basket"]);
+            List<BasketProduct> UserBaket = JsonConvert.DeserializeObject<List<BasketProduct>>(Request.Cookies["basketcookie"]);
             List<BasketProduct> basketProducts = UserBaket.Where(x => x.UserId == UserID).ToList();
 
             List<SalesProduct> _salesProducts = new List<SalesProduct>();
@@ -110,8 +109,10 @@ namespace E_commerce_BackFinal.Controllers
                 salesProduct.SalesId = _sales.Id;
                 salesProduct.ProductId = dbProduct.Id;
                 _salesProducts.Add(salesProduct);
-                total += item.Price * dbProduct.Price;
+                total += item.Count * dbProduct.Price;
+                UserBaket.Remove(item);
             }
+            Response.Cookies.Append("basketcookie", JsonConvert.SerializeObject(UserBaket), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
             _sales.SalesProducts = _salesProducts;
             _sales.Total = total;

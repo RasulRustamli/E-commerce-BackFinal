@@ -144,7 +144,7 @@
                                             <li><a asp-controller="Basket" asp-action="AddBasket" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
-                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                            <li><a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="icon ion-android-open"></i></a></li>
                                         </ul>
                                         @if (item.Campaign.Discount != 0)
                                         {
