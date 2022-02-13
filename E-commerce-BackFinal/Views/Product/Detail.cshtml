@@ -191,7 +191,9 @@
             type: "get",
             url: "/Basket/AddBasket?id=" + id,
 
-            success: function (res) { }
+            success: function (res) {
+                window.location.reload(true)
+            }
         })
     })
 </script>

@@ -30,11 +30,12 @@ namespace E_commerce_BackFinal.Controllers
             List<Product> products = _context.Products.Include(p => p.Campaign).Include(p => p.productPhotos).Include(p => p.Brand).ToList();
 
             HomeVm homeVm = new HomeVm();
-
+            List<HomeProductSlider> homeProductSliders = _context.homeProductSliders.Include(x => x.Product).ToList();
             ViewBag.newarrive = products.OrderByDescending(p => p.Id).Take(14).ToList();
 
             homeVm.categories = categories;
             homeVm.products = products;
+            homeVm.Sliders = homeProductSliders;
             ViewBag.FeatCategories = categories.Where(c => c.IsFeature == true);
            
             return View(homeVm);

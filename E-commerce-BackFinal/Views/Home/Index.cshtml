@@ -13,36 +13,24 @@
 <!--====== Slider Part Start ======-->
 
 <section class="slider-area slider-active">
-    <div class="single-slider">
-        <div class="slider-image">
-            <img src="~/images/slider-1.jpg" alt="slider">
-        </div>
-        <div class="slider-content-wrapper">
-            <div class="container-fluid custom-container">
-                <div class="slider-content">
-                    <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">Save $120 when you buy</h4>
-                    <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>2020 Virtual Reality </span> Fulldive VR.</h1>
-                    <p data-animation="fadeInRightBig" data-delay="0.5s">Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform</p>
-                    <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="single-product.html">Shop Now</a>
+    @foreach (var item in Model.Sliders)
+    {
+        <div class="single-slider">
+            <div class="slider-image">
+                <img src="~/images/product/@item.ImageUrl" alt="slider">
+            </div>
+            <div class="slider-content-wrapper">
+                <div class="container-fluid custom-container">
+                    <div class="slider-content">
+                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">@item.Title</h4>
+                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>@item.Description </span>@item.Product.Name</h1>
+                        <p data-animation="fadeInRightBig" data-delay="0.5s">@item.Product.Description</p>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " asp-controller="Product" asp-action="Detail" asp-route-id="@item.Product.Id">Shop Now</a>
+                    </div>
                 </div>
-            </div> <!-- container -->
+            </div>
         </div>
-    </div> <!-- single slider -->
-    <div class="single-slider">
-        <div class="slider-image">
-            <img src="~/images/slider-2.jpg" alt="slider">
-        </div>
-        <div class="slider-content-wrapper">
-            <div class="container-fluid custom-container">
-                <div class="slider-content">
-                    <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">Save $120 when you buy</h4>
-                    <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>4K HDR Smart TV 43 </span> Sony Bravia.</h1>
-                    <p data-animation="fadeInRightBig" data-delay="0.5s">Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform</p>
-                    <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="single-product.html">Shop Now</a>
-                </div>
-            </div> <!-- container -->
-        </div>
-    </div> <!-- single slider -->
+    }
 </section>
 
 <!--====== Slider Part Ends ======-->

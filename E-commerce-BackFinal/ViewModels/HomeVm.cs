@@ -11,5 +11,6 @@ namespace E_commerce_BackFinal.ViewModels
         
         public List<Category> categories { get; set; }
         public List<Product> products { get; set; }
+        public IEnumerable<HomeProductSlider> Sliders { get; set; }
     }
 }
