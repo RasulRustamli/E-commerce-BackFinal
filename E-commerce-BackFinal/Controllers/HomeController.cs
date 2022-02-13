@@ -31,7 +31,7 @@ namespace E_commerce_BackFinal.Controllers
 
             HomeVm homeVm = new HomeVm();
 
-            ViewBag.newarrive = products.OrderByDescending(p => p.Id).Take(7).ToList();
+            ViewBag.newarrive = products.OrderByDescending(p => p.Id).Take(14).ToList();
 
             homeVm.categories = categories;
             homeVm.products = products;

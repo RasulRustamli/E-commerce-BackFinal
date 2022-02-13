@@ -122,7 +122,27 @@ namespace E_commerce_BackFinal.Controllers
                 return Ok(totalcount);
             }
             return Ok("error");
-            
+        }
+        public IActionResult BasketRemove(int id)
+            {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
+            var UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string basket = Request.Cookies["basketcookie"];
+            List<BasketProduct> basketProducts = new List<BasketProduct>();
+
+            basketProducts = JsonConvert.DeserializeObject<List<BasketProduct>>(basket);
+            Product product = _context.Products.Find(id);
+            foreach (var item in basketProducts)
+            {
+                if (item.Id == id && item.UserId == UserId)
+                {
+                    basketProducts.Remove(item);
+                    break;
+                }
+                
+            }
+            Response.Cookies.Append("basketcookie", JsonConvert.SerializeObject(basketProducts), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+            return Ok();
         }
         public IActionResult Index()
         {

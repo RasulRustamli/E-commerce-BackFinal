@@ -34,6 +34,9 @@ namespace E_commerce_BackFinal.DAL
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogPhoto> BlogPhotos { get; set; }
+        public DbSet<Sales> Sales { get; set; }
+
+        public DbSet<SalesProduct> SalesProducts { get; set; }
 
 
     }

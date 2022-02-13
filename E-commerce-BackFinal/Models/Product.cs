@@ -31,6 +31,8 @@ namespace E_commerce_BackFinal.Models
         public List<ProductTag> ProductTags { get; set; }
         public List<ColorProduct> ColorProducts { get; set; }
         public List<Blog> Blogs { get; set; }
+        public List<SalesProduct> SalesProducts { get; set; }
+
         [NotMapped]
         [Required]
         public IFormFile[] Photos { get; set; }
